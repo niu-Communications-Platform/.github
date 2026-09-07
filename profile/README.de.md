@@ -190,7 +190,20 @@ Einige Grundsätze prägen die Entwicklung bereits heute:
 - **Reality beats configuration.** Das System soll zwischen gewünschtem Zustand und tatsächlich verfügbarer Hardware bzw. Verbindung unterscheiden.
 - **Open source means implementation freedom, not inherited trust.** Eigene Builds und eigene Trust Domains sind ausdrücklich vorgesehen.
 
-Die technischen Hintergründe und Entscheidungen werden im [`architecture`](https://github.com/niu-Communications-Platform/architecture)-Repository dokumentiert.
+## Architektur-Dokumentation
+
+Die technischen Hintergründe und Entscheidungen werden im [`architecture`](https://github.com/niu-Communications-Platform/architecture)-Repository dokumentiert. Deutsch ist dort die kanonische Sprache; die englischen Seiten werden als gepflegte Übersetzungen geführt.
+
+- [Produktprinzipien](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/00-product/product-principles.md)
+- [Systemarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/10-system/system-architecture.md)
+- [Audioarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/40-audio/audio-architecture.md)
+- [Netzwerkarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/50-networking/network-architecture.md)
+- [Identity- und Trust-Architektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/60-identity-security/identity-trust-architecture.md)
+- [Provisioning, Ownership und Lifecycle](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/70-provisioning-lifecycle/provisioning-lifecycle.md)
+- [Factory- und Fertigungsarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/80-manufacturing/factory-architecture.md)
+- [UX-/UI-Prinzipien](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/90-ux-ui/ux-ui-principles.md)
+
+[Vollständiger deutscher Dokumentationsindex](https://github.com/niu-Communications-Platform/architecture/tree/main/docs/de)
 
 ## Repository-Struktur
 
