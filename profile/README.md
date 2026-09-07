@@ -190,7 +190,20 @@ Several principles already guide development:
 - **Reality beats configuration.** The system should distinguish between desired state and the hardware or connectivity actually available.
 - **Open source means implementation freedom, not inherited trust.** Independent builds and independent trust domains are intentional parts of the architecture.
 
-The technical background and decisions are documented in the [`architecture`](https://github.com/niu-Communications-Platform/architecture) repository.
+## Architecture documentation
+
+The technical background and decisions are documented in the [`architecture`](https://github.com/niu-Communications-Platform/architecture) repository. German is canonical; the English pages are maintained translations.
+
+- [Product Principles](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/00-product/product-principles.md)
+- [System Architecture](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/10-system/system-architecture.md)
+- [Audio Architecture](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/40-audio/audio-architecture.md)
+- [Network Architecture](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/50-networking/network-architecture.md)
+- [Identity and Trust Architecture](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/60-identity-security/identity-trust-architecture.md)
+- [Provisioning, Ownership and Lifecycle](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/70-provisioning-lifecycle/provisioning-lifecycle.md)
+- [Factory and Manufacturing Architecture](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/80-manufacturing/factory-architecture.md)
+- [UX/UI Principles](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/90-ux-ui/ux-ui-principles.md)
+
+[Complete English documentation index](https://github.com/niu-Communications-Platform/architecture/tree/main/docs/en)
 
 ## Repository structure
 
