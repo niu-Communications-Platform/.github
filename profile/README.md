@@ -14,7 +14,7 @@ We want to build a platform that can be **bought, understood, modified, self-hos
 
 > **Dedicated hardware. Open infrastructure. Your network. Your choice.**
 
-The **German version is the canonical source** for the project's description and principles. This English version is maintained as a translation for collaboration, exchange and an international community. In case of discrepancies, the German version prevails.
+The **[German version](README.de.md) is the canonical source** for the project's description and principles. This English version is maintained as a translation for collaboration, exchange and an international community. In case of discrepancies, the German version prevails.
 
 ---
 
