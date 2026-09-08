@@ -36,6 +36,40 @@ The nıu Communications Platform aims to combine the strengths of both approache
 
 The starting point is a device that feels like a traditional intercom beltpack while being part of an open IP communication platform underneath.
 
+## Openness that does not stop at access
+
+The platform should not only be open in the sense that source code, schematics or interfaces can theoretically be inspected.
+
+Our ambition goes further:
+
+**Open Source → Open Hardware → Open Diagnostics → Open Repair Documentation → Open Understanding**
+
+A nıu.cp device should not only be usable, repairable and modifiable. A curious owner should have a real opportunity to **understand how it works**.
+
+That means technical documentation should, wherever practical and legally possible, not stop at source code, schematics and repair instructions. It should also explain:
+
+- What does a subsystem do?
+- Why does it exist?
+- How does it interact with other parts of the device?
+- Why was this architecture chosen?
+- What concrete problem does a particular component solve or prevent?
+
+We deliberately distinguish between two documentation layers:
+
+**Engineering & Repair Reference** is aimed at developers, professional repair shops and experienced makers. This is where schematics, BOMs, pinouts, test points, diagnostic procedures, test processes and repair information belong.
+
+**Inside nıu.cp** is intended to guide technically curious users, makers, learners and career changers from product-level understanding towards the actual engineering implementation.
+
+The didactic sequence is:
+
+**Product purpose → architectural understanding → engineering detail**
+
+Technical terms are not avoided; they are explained.
+
+> **Open Hardware does not only mean: you may look inside. Open Understanding means: we help you understand what you see.**
+
+Our goal is a product that combines **polished everyday usability with genuine technical ownership and developer freedom**.
+
 ## One device. Three deployment models.
 
 The platform should not dictate where its communication infrastructure has to run.
@@ -190,20 +224,13 @@ Several principles already guide development:
 - **Reality beats configuration.** The system should distinguish between desired state and the hardware or connectivity actually available.
 - **Open source means implementation freedom, not inherited trust.** Independent builds and independent trust domains are intentional parts of the architecture.
 
-## Architecture documentation
+## Development documentation
 
-The technical background and decisions are documented in the [`architecture`](https://github.com/niu-Communications-Platform/architecture) 🔒 _currently private_ repository. German is canonical; the English pages are maintained translations.
+Technical background, architecture decisions, experiments and validation plans are already maintained systematically in separate repositories.
 
-- [Product Principles](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/00-product/product-principles.md) 🔒 _currently private_
-- [System Architecture](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/10-system/system-architecture.md) 🔒 _currently private_
-- [Audio Architecture](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/40-audio/audio-architecture.md) 🔒 _currently private_
-- [Network Architecture](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/50-networking/network-architecture.md) 🔒 _currently private_
-- [Identity and Trust Architecture 🔒](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/60-identity-security/identity-trust-architecture.md) 🔒 _currently private_
-- [Provisioning, Ownership and Lifecycle](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/70-provisioning-lifecycle/provisioning-lifecycle.md) 🔒 _currently private_
-- [Factory and Manufacturing Architecture](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/80-manufacturing/factory-architecture.md) 🔒 _currently private_
-- [UX/UI Principles](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/en/90-ux-ui/ux-ui-principles.md) 🔒 _currently private_
+During the early product-development phase, these repositories are **intentionally still private**. The public organization profile therefore describes the current project idea and core principles directly, without linking to documents that external visitors cannot access.
 
-[Complete English documentation index](https://github.com/niu-Communications-Platform/architecture/tree/main/docs/en) 🔒 _currently private_
+As the project matures, suitable technical documentation, hardware designs, software and development resources are intended to become public step by step.
 
 ## Repository structure
 
@@ -211,14 +238,15 @@ The GitHub organization is intended to represent the platform through clearly se
 
 ```text
 nıu Communications Platform/
-├── architecture       # system architecture, specifications and ADRs
-├── beltpack           # hardware and device software
-├── base               # local/on-premises platform
-├── cloud              # hosted platform
-└── factory-tools      # manufacturing, EOL and provisioning tools
+├── architecture        # system architecture, specifications and ADRs
+├── beltpack            # hardware and device software
+├── base                # local/on-premises platform
+├── cloud               # hosted platform
+├── factory-tools       # manufacturing, EOL and provisioning tools
+└── product-development # questions, experiments and findings during development
 ```
 
-Not all repositories exist yet. They will be created as practical development of the respective components begins.
+The development repositories are currently private and will evolve as practical development of the respective components continues.
 
 ## Current status
 
