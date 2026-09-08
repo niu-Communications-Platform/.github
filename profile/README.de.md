@@ -192,18 +192,18 @@ Einige Grundsätze prägen die Entwicklung bereits heute:
 
 ## Architektur-Dokumentation
 
-Die technischen Hintergründe und Entscheidungen werden im [`architecture`](https://github.com/niu-Communications-Platform/architecture)-Repository dokumentiert. Deutsch ist dort die kanonische Sprache; die englischen Seiten werden als gepflegte Übersetzungen geführt.
+Die technischen Hintergründe und Entscheidungen werden im [`architecture`](https://github.com/niu-Communications-Platform/architecture)-Repository 🔒 _derzeit noch nicht-öffentlich_ dokumentiert. Deutsch ist dort die kanonische Sprache; die englischen Seiten werden als gepflegte Übersetzungen geführt.
 
-- [Produktprinzipien](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/00-product/product-principles.md)
-- [Systemarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/10-system/system-architecture.md)
-- [Audioarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/40-audio/audio-architecture.md)
-- [Netzwerkarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/50-networking/network-architecture.md)
-- [Identity- und Trust-Architektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/60-identity-security/identity-trust-architecture.md)
-- [Provisioning, Ownership und Lifecycle](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/70-provisioning-lifecycle/provisioning-lifecycle.md)
-- [Factory- und Fertigungsarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/80-manufacturing/factory-architecture.md)
-- [UX-/UI-Prinzipien](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/90-ux-ui/ux-ui-principles.md)
+- [Produktprinzipien](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/00-product/product-principles.md) 🔒 _derzeit noch nicht-öffentlich_
+- [Systemarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/10-system/system-architecture.md) 🔒 _derzeit noch nicht-öffentlich_
+- [Audioarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/40-audio/audio-architecture.md) 🔒 _derzeit noch nicht-öffentlich_
+- [Netzwerkarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/50-networking/network-architecture.md) 🔒 _derzeit noch nicht-öffentlich_
+- [Identity- und Trust-Architektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/60-identity-security/identity-trust-architecture.md) 🔒 _derzeit noch nicht-öffentlich_
+- [Provisioning, Ownership und Lifecycle](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/70-provisioning-lifecycle/provisioning-lifecycle.md) 🔒 _derzeit noch nicht-öffentlich_
+- [Factory- und Fertigungsarchitektur](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/80-manufacturing/factory-architecture.md) 🔒 _derzeit noch nicht-öffentlich_
+- [UX-/UI-Prinzipien](https://github.com/niu-Communications-Platform/architecture/blob/main/docs/de/90-ux-ui/ux-ui-principles.md) 🔒 _derzeit noch nicht-öffentlich_
 
-[Vollständiger deutscher Dokumentationsindex](https://github.com/niu-Communications-Platform/architecture/tree/main/docs/de)
+[Vollständiger deutscher Dokumentationsindex](https://github.com/niu-Communications-Platform/architecture/tree/main/docs/de) 🔒 _derzeit noch nicht-öffentlich_
 
 ## Repository-Struktur
 
