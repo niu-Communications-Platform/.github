@@ -4,13 +4,13 @@
 
 **Open communication infrastructure. Built to be owned.**
 
-The **nıu Communications Platform** is an open communication platform for teams that need reliable voice communication – initially with a clear focus on **live production, broadcast, events and small production teams**.
+The **nıu Communications Platform** – short **nıu.cp** – is an open communication platform for teams that need reliable voice communication – initially with a clear focus on **live production, broadcast, events and small production teams**.
 
 The project combines dedicated communication hardware with open standards, self-hosted infrastructure and optional managed services.
 
 Our goal is not to build another closed intercom system.
 
-We want to build a platform that can be **bought, understood, modified, self-hosted and further developed**.
+We want to build a platform that can be **bought, understood, modified, repaired, self-hosted and further developed**.
 
 > **Dedicated hardware. Open infrastructure. Your network. Your choice.**
 
@@ -29,12 +29,28 @@ The nıu Communications Platform aims to combine the strengths of both approache
 - dedicated, robust communication hardware
 - physical push-to-talk controls
 - communication over standard IP and Wi-Fi networks
-- open software and documented interfaces
+- Mumble/Murmur as the open native voice foundation
+- SIP as a planned interoperability layer
+- open software, documented interfaces and open hardware
 - local and fully self-hosted infrastructure
 - optional managed cloud infrastructure
 - no technical dependency on a vendor cloud
+- repairable, understandable hardware documentation
+- an end-user-replaceable battery
+- an optional secondary Sub-GHz/LoRa resilience path for small status and control messages independent of the primary IP audio path
 
 The starting point is a device that feels like a traditional intercom beltpack while being part of an open IP communication platform underneath.
+
+## What should make nıu.cp different
+
+nıu.cp is not intended to become just a Mumble client in a custom enclosure. The platform is being developed as a complete product and system concept:
+
+- **Mumble-native, SIP-interoperable.** The real-time voice path builds on Mumble/Murmur; SIP is intended where interoperability with existing communication systems is useful.
+- **IP for voice, an additional resilience path for small critical information.** A secondary Sub-GHz radio path is being investigated for presence, status, call/alarm signalling, tally and recovery messages. A local Direct-LoRa star between beltpacks and Base is currently the strongest protocol candidate. This path is explicitly **not a second audio transport** and is not yet a final architecture decision.
+- **Replaceable compute, persistent carrier identity.** Compute modules, operating systems and runtime software should be replaceable or evolvable without unnecessarily tying the physical device identity to them.
+- **Replaceable battery instead of a sealed wear part.** The end user should be able to exchange the battery pack; cell protection and BMS remain the responsibility of a production-ready supplier pack.
+- **Cloud convenience without cloud dependency.** Bare, Base and Cloud should share the same device and protocol foundations wherever practical.
+- **Openness includes diagnostics and repair.** Official nıu trust roots remain protected while hardware, software, diagnostics and repair remain understandable wherever legally and technically possible.
 
 ## Openness that does not stop at access
 
@@ -86,7 +102,7 @@ No nıu server or cloud subscription is required.
 
 **nıu Base** provides the devices with a local, preconfigured communication instance.
 
-Communication can remain entirely within the local network and continue to operate independently of an Internet connection.
+Voice communication can remain entirely within the local network and continue to operate independently of an Internet connection. In the future, Base may also provide local infrastructure for additional device capabilities such as the secondary resilience/control path.
 
 Base combines the control of self-hosting with the convenience of an appliance.
 
@@ -116,7 +132,7 @@ Our first focus.
 - film and video production
 - mobile production environments
 
-The first nıu beltpack is being developed for this environment.
+The first **nıu.cp beltpack** is being developed for this environment.
 
 ### Operations
 
@@ -134,22 +150,27 @@ Love is not merely another Production beltpack configuration. It represents a se
 
 We do not intend to reinvent a voice stack where a mature open solution already exists.
 
-The platform uses **Mumble/Murmur** as its communication foundation and builds the components around it that turn a general-purpose VoIP system into a dedicated communication platform:
+The platform uses **Mumble/Murmur** as its native communication foundation and builds the components around it that turn a general-purpose VoIP system into a dedicated communication platform. **SIP is planned as an interoperability layer, not as a replacement for the native Mumble model.**
 
 ```text
-┌─────────────────────────────────────┐
-│          nıu Applications           │
-│ Production · Operations · Love      │
-├─────────────────────────────────────┤
-│        nıu Device Platform          │
-│ UI · PTT · Audio · Provisioning     │
-├─────────────────────────────────────┤
-│       Communication Layer           │
-│          Mumble / Murmur            │
-├─────────────────────────────────────┤
-│        Standard IP Networks         │
-│       Wi-Fi · LAN · Internet        │
-└─────────────────────────────────────┘
+┌────────────────────────────────────────┐
+│            nıu Applications            │
+│     Production · Operations · Love     │
+├────────────────────────────────────────┤
+│          nıu Device Platform           │
+│   UI · PTT · Audio · Provisioning      │
+├────────────────────────────────────────┤
+│        Communication / Interop          │
+│       Mumble / Murmur · SIP bridge      │
+├────────────────────────────────────────┤
+│           Standard IP Networks         │
+│          Wi-Fi · LAN · Internet        │
+└────────────────────────────────────────┘
+          ║
+          ║ optional independent
+          ║ low-bandwidth resilience/control
+          ▼
+      Sub-GHz / LoRa candidate
 ```
 
 There is no reason to reinvent the wheel where a proven open protocol already exists.
@@ -177,7 +198,7 @@ Our principle is:
 
 **Open source means implementation freedom – not inheriting the nıu identity or nıu trust.**
 
-Official nıu hardware, firmware and services use cryptographic trust roots controlled by nıu. Independent operators can use the same open source implementation with their own keys, infrastructure and trust roots.
+Official nıu hardware, firmware and services use cryptographic trust roots controlled by nıu. Independent operators can use the same open implementation with their own keys, infrastructure and trust roots.
 
 This allows the platform to remain open without sacrificing the authenticity of official components.
 
@@ -197,17 +218,22 @@ The managed service therefore has to compete through **convenience, operation, a
 
 This project is explicitly more than a software experiment.
 
-The beltpack is being developed with an actual manufacturable product in mind:
+The beltpack is being developed with an actual manufacturable product in mind. The current physical working model explores a **105 × 70 mm Core Body** with a side-mounted partially recessed replaceable battery pack, large PTT on the opposite side and a free rear surface for the belt clip. This geometry is not yet a production freeze, but it is substantially more concrete than an abstract concept.
+
+Planned or actively investigated capabilities include:
 
 - dedicated PTT controls
-- integrated audio
-- external headset and audio-device connectivity
+- internal microphone and speaker
+- separate MIC/PHONES connectors and TRRS headset support
+- USB Audio and planned Bluetooth Audio
 - Wi-Fi/IP communication
-- display and status indication
-- battery operation and continuous powered operation
+- optional secondary Sub-GHz/LoRa resilience path
+- display, physical VOL±/CH±/MENU/BACK controls and status indication
+- two USB-C interfaces for POWER and ACCESSORY; mechanical placement is also being developed with a possible docking solution in mind
+- replaceable battery pack and operation from sufficient external power
 - robust and serviceable construction
+- secure device identity separated from the compute module
 - scalable manufacturing and automated end-of-line testing
-- provisioning and secure device identity
 - OTA updates, recovery and diagnostics
 - regulatory compliance and certification
 
@@ -223,6 +249,7 @@ Several principles already guide development:
 - **Identity lives on the carrier. Configuration belongs to deployment. Runtime state belongs to the compute module.** Replaceable components should not unnecessarily define device identity.
 - **Reality beats configuration.** The system should distinguish between desired state and the hardware or connectivity actually available.
 - **Open source means implementation freedom, not inherited trust.** Independent builds and independent trust domains are intentional parts of the architecture.
+- **Prototype = measurement instrument.** Open engineering questions should be measured reproducibly on prototypes rather than optimized only in theory.
 
 ## Development documentation
 
@@ -250,15 +277,17 @@ The development repositories are currently private and will evolve as practical 
 
 ## Current status
 
-🚧 **Early development / architecture and prototyping**
+🚧 **Active architecture validation and prototype preparation**
 
 Our present focus is:
 
-**Production → Beltpack → local communication → robust hardware → reproducible platform**
+**Production → nıu.cp Beltpack → local communication → robust hardware → reproducible platform**
 
-Early prototypes and existing open-source components are being used to validate the architecture, hardware and interaction model in real-world environments.
+Several important architecture decisions are already established, including carrier-based device identity, Mumble as the native voice protocol with SIP interoperability, separated open trust domains and the end-user-replaceable battery pack. Other points deliberately remain under active validation, especially compute selection, compute-independent USB-audio integration, Secondary Sub-GHz/LoRa, RF/antenna behaviour, the battery dock, mechanics and series manufacturing.
 
-The project is deliberately not being completely frozen on the drawing board. Before the first hardware prototype, the main focus is on decisions that could create expensive hardware lock-ins later. Other questions will be measured on the prototype and decided based on practical results.
+The current strongest mechanical working model uses a 105 × 70 mm Core Body with a side-mounted battery pack. For the additional resilience path, a local Direct-LoRa star using an independent MCU/radio is being investigated as a serious V1 candidate. Neither is a final product freeze yet.
+
+The project is deliberately not being completely frozen on the drawing board. Decisions with high hardware lock-in risk are validated early; other questions will be measured on prototypes and decided based on practical results.
 
 Interfaces, hardware designs and architectural decisions may change significantly during this phase.
 
