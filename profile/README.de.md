@@ -4,13 +4,13 @@
 
 **Offene Kommunikationsinfrastruktur. Gebaut, um sie selbst zu besitzen.**
 
-Die **nıu Communications Platform** ist eine offene Kommunikationsplattform für Teams, die zuverlässige Sprachkommunikation benötigen – zunächst mit einem klaren Fokus auf **Live-Produktion, Broadcast, Veranstaltungen und kleine Produktionsteams**.
+Die **nıu Communications Platform** – kurz **nıu.cp** – ist eine offene Kommunikationsplattform für Teams, die zuverlässige Sprachkommunikation benötigen – zunächst mit einem klaren Fokus auf **Live-Produktion, Broadcast, Veranstaltungen und kleine Produktionsteams**.
 
 Das Projekt verbindet dedizierte Kommunikationshardware mit offenen Standards, selbst betreibbarer Infrastruktur und optional betriebenen Diensten.
 
 Unser Ziel ist kein weiteres geschlossenes Intercom-System.
 
-Wir wollen eine Plattform bauen, die man **kaufen, verstehen, verändern, selbst betreiben und weiterentwickeln** kann.
+Wir wollen eine Plattform bauen, die man **kaufen, verstehen, verändern, reparieren, selbst betreiben und weiterentwickeln** kann.
 
 > **Dedicated hardware. Open infrastructure. Your network. Your choice.**
 
@@ -29,12 +29,28 @@ Die nıu Communications Platform versucht, diese beiden Welten zusammenzuführen
 - dedizierte, robuste Kommunikationshardware
 - physische Push-to-Talk-Bedienung
 - Kommunikation über Standard-IP-Netzwerke und WLAN
-- offene Software und dokumentierte Schnittstellen
+- Mumble/Murmur als offene native Sprachbasis
+- SIP als vorgesehene Interoperabilitätsschicht
+- offene Software, dokumentierte Schnittstellen und offene Hardware
 - lokale und vollständig selbst betriebene Infrastruktur
 - optional komfortabel betriebene Cloud-Infrastruktur
 - keine technische Abhängigkeit von einer Hersteller-Cloud
+- reparierbare, verständlich dokumentierte Hardware
+- ein durch den Endnutzer austauschbarer Akku
+- ein optionaler sekundärer Sub-GHz-/LoRa-Resilience-Pfad für kleine Status- und Steuerinformationen, unabhängig vom primären IP-Audioweg
 
 Der Ausgangspunkt ist ein Gerät, das sich wie ein klassisches Beltpack benutzen lässt – technisch darunter aber Teil einer offenen IP-Kommunikationsplattform ist.
+
+## Was nıu.cp besonders machen soll
+
+nıu.cp soll nicht einfach ein Mumble-Client in einem eigenen Gehäuse werden. Die Plattform wird als vollständiges Produkt- und Systemkonzept entwickelt:
+
+- **Mumble-native, SIP-interoperabel.** Der Echtzeit-Sprachpfad baut auf Mumble/Murmur auf; SIP soll dort angebunden werden, wo Interoperabilität mit bestehenden Kommunikationssystemen sinnvoll ist.
+- **IP für Sprache, zusätzlicher Resilience-Pfad für kleine kritische Informationen.** Ein sekundärer Sub-GHz-Funkpfad wird für Presence, Status, Call-/Alarm-Signalisierung, Tally und Recovery-Nachrichten untersucht. Ein lokaler Direct-LoRa-Star zwischen Beltpacks und Base ist derzeit der stärkste Protokollkandidat. Dieser Pfad ist ausdrücklich **kein zweiter Audio-Transport** und noch keine endgültige Architekturentscheidung.
+- **Compute ist austauschbar, Produktidentität bleibt auf dem Carrier.** Rechenmodul, Betriebssystem und Runtime sollen ersetzt oder weiterentwickelt werden können, ohne die physische Geräteidentität unnötig daran zu binden.
+- **Austauschbarer Akku statt versiegeltem Verschleißteil.** Der Endnutzer soll den Battery Pack selbst wechseln können; Zellschutz und BMS bleiben Aufgabe eines serienreifen Herstellerpacks.
+- **Cloud-Komfort ohne Cloud-Zwang.** Bare, Base und Cloud nutzen soweit sinnvoll dieselben Geräte- und Protokollgrundlagen.
+- **Offenheit umfasst Diagnose und Reparatur.** Offizielle nıu-Trust-Roots bleiben geschützt, während Hardware, Software, Diagnose und Reparatur soweit rechtlich und technisch möglich nachvollziehbar bleiben.
 
 ## Offenheit, die beim Verstehen nicht aufhört
 
@@ -86,7 +102,7 @@ Kein nıu-Server und kein Cloud-Abonnement sind erforderlich.
 
 **nıu Base** ergänzt die Geräte um eine lokale, vorkonfigurierte Kommunikationsinstanz.
 
-Die gesamte Kommunikation kann innerhalb des eigenen Netzwerks stattfinden – auch unabhängig vom Internet.
+Die gesamte Sprachkommunikation kann innerhalb des eigenen Netzwerks stattfinden – auch unabhängig vom Internet. Perspektivisch kann Base außerdem lokale Infrastruktur für zusätzliche Gerätefunktionen wie den sekundären Resilience-/Control-Pfad bereitstellen.
 
 Damit verbindet Base die Kontrolle eines selbst betriebenen Systems mit dem Komfort einer Appliance.
 
@@ -116,7 +132,7 @@ Der erste Schwerpunkt.
 - Film- und Videoproduktion
 - mobilen Produktionsteams
 
-Hier entsteht auch das erste Beltpack der Plattform.
+Hier entsteht auch das erste **nıu.cp Beltpack** der Plattform.
 
 ### Operations
 
@@ -134,22 +150,27 @@ Love ist keine bloße Variante des Production-Beltpacks, sondern eine eigenstän
 
 Die Plattform baut nicht unnötig einen eigenen Voice-Stack.
 
-Als Kommunikationsgrundlage verwenden wir **Mumble/Murmur** und entwickeln darum herum die Komponenten, die aus einem allgemeinen VoIP-System eine dedizierte Kommunikationsplattform machen:
+Als native Kommunikationsgrundlage verwenden wir **Mumble/Murmur** und entwickeln darum herum die Komponenten, die aus einem allgemeinen VoIP-System eine dedizierte Kommunikationsplattform machen. **SIP ist als Interoperabilitätsschicht vorgesehen, nicht als Ersatz für das native Mumble-Modell.**
 
 ```text
-┌─────────────────────────────────────┐
-│          nıu Applications           │
-│ Production · Operations · Love      │
-├─────────────────────────────────────┤
-│        nıu Device Platform          │
-│ UI · PTT · Audio · Provisioning     │
-├─────────────────────────────────────┤
-│       Communication Layer           │
-│          Mumble / Murmur            │
-├─────────────────────────────────────┤
-│        Standard IP Networks         │
-│       Wi-Fi · LAN · Internet        │
-└─────────────────────────────────────┘
+┌────────────────────────────────────────┐
+│            nıu Applications            │
+│     Production · Operations · Love     │
+├────────────────────────────────────────┤
+│          nıu Device Platform           │
+│   UI · PTT · Audio · Provisioning      │
+├────────────────────────────────────────┤
+│        Communication / Interop          │
+│       Mumble / Murmur · SIP bridge      │
+├────────────────────────────────────────┤
+│           Standard IP Networks         │
+│          Wi-Fi · LAN · Internet        │
+└────────────────────────────────────────┘
+          ║
+          ║ optional independent
+          ║ low-bandwidth resilience/control
+          ▼
+      Sub-GHz / LoRa candidate
 ```
 
 Das Rad soll dort nicht neu erfunden werden, wo bereits ein bewährtes offenes Protokoll existiert.
@@ -177,7 +198,7 @@ Dabei gilt:
 
 **Open Source bedeutet Implementierungsfreiheit – nicht die Übernahme der nıu-Identität oder nıu-Vertrauensstellung.**
 
-Offizielle nıu-Geräte, Firmware und Dienste verwenden von nıu kontrollierte kryptographische Vertrauensanker. Andere Betreiber können denselben offenen Source Code mit eigenen Schlüsseln und eigener Infrastruktur einsetzen.
+Offizielle nıu-Geräte, Firmware und Dienste verwenden von nıu kontrollierte kryptographische Vertrauensanker. Andere Betreiber können dieselbe offene Implementierung mit eigenen Schlüsseln und eigener Infrastruktur einsetzen.
 
 Damit soll Offenheit möglich sein, ohne Herkunft und Authentizität offizieller Komponenten aufzugeben.
 
@@ -197,17 +218,22 @@ Unsere Cloud muss deshalb durch **Komfort, Betrieb, Verfügbarkeit, Support und 
 
 Das Projekt ist ausdrücklich nicht nur ein Softwareexperiment.
 
-Das Beltpack wird mit Blick auf ein später tatsächlich produzierbares Gerät entwickelt:
+Das Beltpack wird mit Blick auf ein später tatsächlich produzierbares Gerät entwickelt. Der aktuelle physische Arbeitsstand untersucht einen **105 × 70 mm Core Body** mit seitlich teilversenktem, austauschbarem Battery Pack, großem PTT auf der Gegenseite und freier Rückseite für den Beltclip. Diese Geometrie ist noch kein Production Freeze, aber deutlich konkreter als ein abstraktes Konzept.
+
+Zu den vorgesehenen bzw. untersuchten Eigenschaften gehören:
 
 - dedizierte PTT-Bedienung
-- integriertes Audio
-- Anschluss externer Headsets und Audio-Geräte
+- internes Mikrofon und interner Lautsprecher
+- separate MIC-/PHONES-Anschlüsse und TRRS-Headset
+- USB Audio und perspektivisch Bluetooth Audio
 - WLAN/IP-Kommunikation
-- Display und Statusanzeigen
-- Akkubetrieb und stationärer Dauerbetrieb
+- optionaler sekundärer Sub-GHz-/LoRa-Resilience-Pfad
+- Display, physische VOL±/CH±/MENU/BACK-Bedienung und Statusanzeigen
+- zwei USB-C-Schnittstellen für POWER und ACCESSORY; die mechanische Anordnung wird auch mit Blick auf eine mögliche Docking-Lösung entwickelt
+- austauschbarer Battery Pack und Betrieb an ausreichender externer Versorgung
 - robuste und wartbare Konstruktion
+- sichere, vom Compute-Modul getrennte Geräteidentität
 - automatisierbare Fertigung und End-of-Line-Tests
-- Provisioning und sichere Geräteidentität
 - OTA-Updates, Recovery und Diagnose
 - regulatorische Konformität und Zertifizierung
 
@@ -223,6 +249,7 @@ Einige Grundsätze prägen die Entwicklung bereits heute:
 - **Identity lives on the carrier. Configuration belongs to deployment. Runtime state belongs to the compute module.** Austauschbare Komponenten sollen nicht unnötig die Identität des Geräts bestimmen.
 - **Reality beats configuration.** Das System soll zwischen gewünschtem Zustand und tatsächlich verfügbarer Hardware bzw. Verbindung unterscheiden.
 - **Open source means implementation freedom, not inherited trust.** Eigene Builds und eigene Trust Domains sind ausdrücklich vorgesehen.
+- **Prototype = measurement instrument.** Offene technische Fragen sollen am Prototyp reproduzierbar gemessen werden, statt nur theoretisch optimiert zu werden.
 
 ## Entwicklungsdokumentation
 
@@ -238,11 +265,11 @@ Die GitHub-Organisation soll die Plattform in klar getrennten Verantwortungsbere
 
 ```text
 nıu Communications Platform/
-├── architecture       # Systemarchitektur, Spezifikationen und ADRs
-├── beltpack           # Hardware und Device Software
-├── base               # lokale/on-premise Plattform
-├── cloud              # gehostete Plattform
-├── factory-tools      # Fertigung, EOL und Provisioning-Werkzeuge
+├── architecture        # Systemarchitektur, Spezifikationen und ADRs
+├── beltpack            # Hardware und Device Software
+├── base                # lokale/on-premise Plattform
+├── cloud               # gehostete Plattform
+├── factory-tools       # Fertigung, EOL und Provisioning-Werkzeuge
 └── product-development # Fragen, Experimente und Erkenntnisse während der Entwicklung
 ```
 
@@ -250,15 +277,17 @@ Die Entwicklungs-Repositories sind derzeit privat und werden mit der praktischen
 
 ## Aktueller Status
 
-🚧 **Frühe Entwicklung / Architektur und Prototyping**
+🚧 **Aktive Architekturvalidierung und Prototypvorbereitung**
 
 Der aktuelle Schwerpunkt liegt auf:
 
-**Production → Beltpack → lokale Kommunikation → robuste Hardware → reproduzierbare Plattform**
+**Production → nıu.cp Beltpack → lokale Kommunikation → robuste Hardware → reproduzierbare Plattform**
 
-Prototypen und bestehende Open-Source-Komponenten dienen zunächst dazu, Architektur, Hardware und Bedienkonzept praktisch zu validieren.
+Wesentliche Architekturentscheidungen sind bereits gefallen – darunter Carrier-basierte Geräteidentität, Mumble als natives Sprachprotokoll mit SIP-Interoperabilität, getrennte offene Trust Domains und der durch den Endnutzer austauschbare Battery Pack. Andere Punkte bleiben bewusst unter aktiver Validierung, insbesondere Compute-Auswahl, compute-unabhängige USB-Audio-Anbindung, Secondary Sub-GHz/LoRa, RF/Antennenverhalten, Battery-Dock, Mechanik und Serienfertigung.
 
-Das Projekt wird bewusst nicht vollständig am Reißbrett eingefroren. Vor dem ersten Hardware-Prototyp werden vor allem Entscheidungen abgesichert, die später teure Hardware-Lock-ins erzeugen würden. Andere Fragen werden am Prototyp gemessen und anschließend entschieden.
+Der derzeit stärkste mechanische Arbeitsstand nutzt einen 105 × 70 mm Core Body mit seitlichem Battery Pack. Für den zusätzlichen Resilience-Pfad wird ein lokaler Direct-LoRa-Star mit eigenständigem MCU/Radio als ernsthafter V1-Kandidat untersucht. Beides ist noch kein endgültiger Product Freeze.
+
+Das Projekt wird bewusst nicht vollständig am Reißbrett eingefroren. Entscheidungen mit hohem Hardware-Lock-in-Risiko werden früh abgesichert; andere Fragen werden am Prototyp gemessen und anschließend entschieden.
 
 Interfaces, Hardwaredesigns und Architekturentscheidungen können sich in dieser Phase noch deutlich verändern.
 
