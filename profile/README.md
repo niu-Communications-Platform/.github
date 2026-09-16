@@ -47,7 +47,7 @@ nıu.cp is not intended to become just a Mumble client in a custom enclosure. Th
 
 - **Mumble-native, SIP-interoperable.** The real-time voice path builds on Mumble/Murmur; SIP is intended where interoperability with existing communication systems is useful.
 - **IP for voice, an additional resilience path for small critical information.** A secondary Sub-GHz radio path is being investigated for presence, status, call/alarm signalling, tally and recovery messages. A local Direct-LoRa star between beltpacks and Base is currently the strongest protocol candidate. This path is explicitly **not a second audio transport** and is not yet a final architecture decision.
-- **Replaceable compute, persistent carrier identity.** Compute modules, operating systems and runtime software should be replaceable or evolvable without unnecessarily tying the physical device identity to them.
+- **Compute is an implementation detail, not device identity.** The concrete compute platform may evolve – from Linux-based modules or SBCs to a native embedded/MCU implementation – without unnecessarily tying the physical device identity and trust position to it.
 - **Replaceable battery instead of a sealed wear part.** The end user should be able to exchange the battery pack; cell protection and BMS remain the responsibility of a production-ready supplier pack.
 - **Cloud convenience without cloud dependency.** Bare, Base and Cloud should share the same device and protocol foundations wherever practical.
 - **Openness includes diagnostics and repair.** Official nıu trust roots remain protected while hardware, software, diagnostics and repair remain understandable wherever legally and technically possible.
@@ -148,9 +148,11 @@ Love is not merely another Production beltpack configuration. It represents a se
 
 ## Why Mumble?
 
-We do not intend to reinvent a voice stack where a mature open solution already exists.
+The platform does **not invent a proprietary voice protocol** where a proven open foundation already exists.
 
 The platform uses **Mumble/Murmur** as its native communication foundation and builds the components around it that turn a general-purpose VoIP system into a dedicated communication platform. **SIP is planned as an interoperability layer, not as a replacement for the native Mumble model.**
+
+The nıu.cp device platform is not tied to a single endpoint implementation. Linux-based clients and a possible native embedded implementation can coexist as independent implementations of the same communication model. What matters is the open protocol and behavioural model – not a particular operating system or runtime.
 
 ```text
 ┌────────────────────────────────────────┐
@@ -173,9 +175,26 @@ The platform uses **Mumble/Murmur** as its native communication foundation and b
       Sub-GHz / LoRa candidate
 ```
 
-There is no reason to reinvent the wheel where a proven open protocol already exists.
+There is no reason to reinvent the wheel where a proven open protocol exists.
 
-Development can therefore focus on hardware, user interaction, provisioning, management, integration and reliable operation.
+Development can therefore focus on hardware, endpoint implementations, user interaction, provisioning, management, integration and reliable operation.
+
+## Compute paths under active validation
+
+The device compute architecture is deliberately still open. Several paths are currently being validated against one another:
+
+```text
+Device compute architecture
+├── Linux
+│   ├── Compute Module
+│   └── Zero-class SBC
+└── Embedded / MCU
+    └── native Mumble endpoint
+```
+
+The Linux paths remain complete reference and development options. In parallel, we are investigating whether a native embedded/MCU endpoint can reach the same functional scope with lower hardware complexity and better unit economics.
+
+This investigation is **not yet an architecture decision**. The target is not commitment to a particular processor family, but the same open nıu.cp functional endpoint through an implementation that is robust, maintainable and economically manufacturable.
 
 ## Open source by architecture
 
@@ -232,7 +251,7 @@ Planned or actively investigated capabilities include:
 - two USB-C interfaces for POWER and ACCESSORY; mechanical placement is also being developed with a possible docking solution in mind
 - replaceable battery pack and operation from sufficient external power
 - robust and serviceable construction
-- secure device identity separated from the compute module
+- secure device identity and trust separated from the concrete application-compute/runtime implementation
 - scalable manufacturing and automated end-of-line testing
 - OTA updates, recovery and diagnostics
 - regulatory compliance and certification
@@ -246,7 +265,7 @@ Several principles already guide development:
 - **Complexity on the inside, simplicity on the outside.** The device should remain easy to use even when a capable platform operates underneath.
 - **Capability ≠ Feature.** The technical platform may expose more capability than the normal user interface needs to show.
 - **Hardware creates possibilities; software decides later which of them are used.** Expensive hardware lock-ins should be avoided early.
-- **Identity lives on the carrier. Configuration belongs to deployment. Runtime state belongs to the compute module.** Replaceable components should not unnecessarily define device identity.
+- **Identity belongs to the device. Configuration belongs to deployment. Runtime state belongs to the active runtime environment.** Device identity should not unnecessarily depend on a replaceable or evolving compute/runtime implementation.
 - **Reality beats configuration.** The system should distinguish between desired state and the hardware or connectivity actually available.
 - **Open source means implementation freedom, not inherited trust.** Independent builds and independent trust domains are intentional parts of the architecture.
 - **Prototype = measurement instrument.** Open engineering questions should be measured reproducibly on prototypes rather than optimized only in theory.
@@ -283,7 +302,9 @@ Our present focus is:
 
 **Production → nıu.cp Beltpack → local communication → robust hardware → reproducible platform**
 
-Several important architecture decisions are already established, including carrier-based device identity, Mumble as the native voice protocol with SIP interoperability, separated open trust domains and the end-user-replaceable battery pack. Other points deliberately remain under active validation, especially compute selection, compute-independent USB-audio integration, Secondary Sub-GHz/LoRa, RF/antenna behaviour, the battery dock, mechanics and series manufacturing.
+Several important architecture decisions are already established, including separation of device identity from the replaceable runtime, Mumble as the native voice protocol with SIP interoperability, separate open trust domains and the end-user-replaceable battery pack.
+
+The **device-compute architecture** deliberately remains open. Linux-based Compute Modules and Zero-class SBCs remain active reference paths, while a native embedded/MCU implementation is being practically validated as a third architecture hypothesis. Other open areas include Secondary Sub-GHz/LoRa, RF/antenna behaviour, the battery dock, mechanics, audio integration and series manufacturing.
 
 The current strongest mechanical working model uses a 105 × 70 mm Core Body with a side-mounted battery pack. For the additional resilience path, a local Direct-LoRa star using an independent MCU/radio is being investigated as a serious V1 candidate. Neither is a final product freeze yet.
 
